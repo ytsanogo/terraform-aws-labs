@@ -40,7 +40,7 @@ resource "aws_security_group" "lab_sg" {
 }
 
 resource "aws_instance" "lab_server" {
-  ami           = "ami-084568db4383264d4"
+  ami           = "ami-0e36589560a1853c7"
   instance_type = "t2.micro"
 
   key_name = "bdr-lab"
