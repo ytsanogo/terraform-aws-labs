@@ -8,12 +8,12 @@ terraform {
 }
 
 provider "aws" {
-  region  = "us-east-1"
-  profile = "awsfree"
+  region = "us-east-1"
 }
 
 resource "aws_s3_bucket" "tf_state" {
-  bucket = "youssouf-terraform-state-2026"
+  bucket        = "youssouf-terraform-state-2026"
+  force_destroy = true # Prevents the "BucketNotEmpty" error on teardown
 
   tags = {
     Name = "terraform-state-bucket"
@@ -25,22 +25,5 @@ resource "aws_s3_bucket_versioning" "tf_state_versioning" {
 
   versioning_configuration {
     status = "Enabled"
-  }
-}
-
-resource "aws_dynamodb_table" "tf_locks" {
-  name         = "terraform-state-locks"
-
-  billing_mode = "PAY_PER_REQUEST"
-
-  hash_key = "LockID"
-
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
-
-  tags = {
-    Name = "terraform-lock-table"
   }
 }
