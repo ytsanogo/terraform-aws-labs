@@ -27,9 +27,9 @@ resource "aws_security_group" "lab_sg" {
   }
 
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
 
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -40,7 +40,7 @@ resource "aws_security_group" "lab_sg" {
 }
 
 resource "aws_instance" "lab_server" {
-  ami           = "ami-0e36589560a1853c7"
+  ami           = "ami-084568db4383264d4"
   instance_type = "t2.micro"
 
   key_name = "bdr-lab"
